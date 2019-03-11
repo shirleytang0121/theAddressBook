@@ -48,6 +48,24 @@ class App extends Component {
     }
     ]
   }
+
+  //show address
+  showAddress=()=>{
+    const address=[...this.state.addess];
+    return address.map((item)=>(
+      <ListGroup.Item key={item.FirstName}>
+        <Card className="bg-light border round">
+          <span className="text-right">{'\u274e'}</span>
+          <Card.Body className="text-left">
+            <p>FirstName:{item.FirstName}</p>
+            <p>LastName:{item.LastName}</p>
+            <p>Birthday:{item.Birthday}</p>
+            <p>Telephone:{item.Telephone}</p>
+          </Card.Body>
+        </Card>
+      </ListGroup.Item>
+    ))
+  }
   render() {
     return (
       <div className="App">
@@ -56,7 +74,7 @@ class App extends Component {
             <h1>React Based ToDo List</h1>
           </header> 
           <ListGroup>
-            
+            {this.showAddress()}
           </ListGroup>
           <h2>Add A ToDo</h2>
           <Form className="text-left">
