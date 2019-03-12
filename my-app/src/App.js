@@ -47,7 +47,11 @@ class App extends Component {
         Birthday: "9/10/1975",
         Telephone: "200-707-8670"
     }
-    ]
+    ],
+    formFirstName:"",
+    formLastName:"",
+    formBirthday:"",
+    formTelephone:""
 
   }
   addAddressHandler = (event) => {
@@ -92,13 +96,24 @@ class App extends Component {
           <Form className="text-left" onClick={this.addAddressHandler}>
             <Form.Group controlId="formAddress">
               <Form.Label>FirstName</Form.Label>
-              <Form.Control type="text" placeholder="Enter firstName" />
+              <Form.Control type="text" placeholder="Enter firstName" 
+              value={this.state.formFirstName}
+              onChange={(e)=>this.setState({formFirstName:e.target.value})}
+              />
               <Form.Label>LastName</Form.Label>
-              <Form.Control type="text" placeholder="Enter lastName" />
+              <Form.Control type="text" placeholder="Enter lastName"
+              value={this.state.formLastName}
+              onChange={(e)=>this.setState({formLastName:e.target.value})}
+               />
               <Form.Label>Birthday</Form.Label>
-              <Form.Control type="text" placeholder="Enter Birthday" />
+              <Form.Control type="text" placeholder="Enter Birthday"
+              value={this.state.formBirthday}
+              onChange={(e)=>this.setState({formBirthday:e.target.value})} />
               <Form.Label>Telephone</Form.Label>
-              <Form.Control type="text" placeholder="Enter Telephone" />
+              <Form.Control type="text" placeholder="Enter Telephone" 
+              value={this.state.formTelephone}
+              onChange={(e)=>this.setState({formTelephone:e.target.value})}
+              />
             </Form.Group>
             <Button variant="primary" type="submit" >
             Add Address
