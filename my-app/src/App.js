@@ -8,9 +8,12 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+
+
+
 class App extends Component {
   state={
-    addess :[
+    address :[
       {
         FirstName: "Cathy" ,
         LastName: "Pierce",
@@ -54,24 +57,16 @@ class App extends Component {
     formTelephone:""
 
   }
-  addAddressHandler = (event) => {
-    event.preventDefault()
-    
-    let newAddress = {
-      FirstName:
-      LastName:
-      Birthday:
-      Telephone:
-    };
-  }
 
-  //show address
-  showAddress=()=>{
-    const address=[...this.state.addess];
-    return address.map((item)=>(
-      <ListGroup.Item key={item.FirstName}>
-        <Card className="bg-light border round">
-          <span className="text-right">{'\u274e'}</span>
+
+  showAddress = () => {
+    const address = [...this.state.address];
+    return address.map(
+      item => (
+        <ListGroup.Item key={item.FirstName}>
+        <Card className="bg-light border rounded">
+          <span 
+          className="text-right">{'\u274e'}</span>
           <Card.Body className="text-left">
             <p>FirstName:{item.FirstName}</p>
             <p>LastName:{item.LastName}</p>
@@ -80,8 +75,31 @@ class App extends Component {
           </Card.Body>
         </Card>
       </ListGroup.Item>
-    ))
+      )
+    )
   }
+  addAddressHandler = (event) => {
+    event.preventDefault()
+    
+    let newAddress = {
+      FirstName:this.state.formFirstName,
+      LastName:this.state.formLastName,
+      Birthday:this.state.formBirthday,
+      Telephone:this.state.formTelephone
+    };
+    this.setState({address:[...this.state.address,newAddress]})
+    this.setState({formFirstName:""})
+    this.setState({formLastName:""})
+    this.setState({formBirthday:""})
+    this.setState({formTelephone:""})
+  }
+
+   
+
+  
+  
+
+  //render 
   render=()=> {
     return (
       <div className="App">
@@ -90,10 +108,10 @@ class App extends Component {
             <h1>Address Book</h1>
           </header> 
           <ListGroup>
-            {this.showAddress()}
+             {this.showAddress()}
           </ListGroup>
           <h2>Add a new address about some one</h2>
-          <Form className="text-left" onClick={this.addAddressHandler}>
+          <Form className="text-left" onSubmit={this.addAddressHandler}>
             <Form.Group controlId="formAddress">
               <Form.Label>FirstName</Form.Label>
               <Form.Control type="text" placeholder="Enter firstName" 
