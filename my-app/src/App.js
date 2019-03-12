@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button';
 
 class App extends Component {
   state={
-    address :[
+    "address" :[
       {
         FirstName: "Cathy" ,
         LastName: "Pierce",
@@ -63,10 +63,9 @@ class App extends Component {
     const address = [...this.state.address];
     return address.map(
       item => (
-        <ListGroup.Item key={item.FirstName}>
+        <ListGroup.Item key={item.Telephone}>
         <Card className="bg-light border rounded">
-          <span 
-          className="text-right">{'\u274e'}</span>
+          <span className="text-right" onClick={this.closeAddress()}>{'\u274e'}</span>
           <Card.Body className="text-left">
             <p>FirstName:{item.FirstName}</p>
             <p>LastName:{item.LastName}</p>
@@ -87,7 +86,7 @@ class App extends Component {
       Birthday:this.state.formBirthday,
       Telephone:this.state.formTelephone
     };
-    this.setState({address:[...this.state.address,newAddress]})
+    this.setState({"address":[...this.state.address,newAddress]})
     this.setState({formFirstName:""})
     this.setState({formLastName:""})
     this.setState({formBirthday:""})
@@ -95,8 +94,12 @@ class App extends Component {
   }
 
    
-
-  
+   closeAddress = (Telephone,e) =>{
+      let address=[...this.state.address];
+      let deleteIndex=1;
+      address.splice(deleteIndex,1);
+      this.setState({"address":address})
+   }  
   
 
   //render 
