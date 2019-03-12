@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 class App extends Component {
   state={
@@ -66,24 +67,31 @@ class App extends Component {
       </ListGroup.Item>
     ))
   }
-  render() {
+  render=()=> {
     return (
       <div className="App">
         <Container>
           <header className="App-header">
-            <h1>React Based ToDo List</h1>
+            <h1>Address Book</h1>
           </header> 
           <ListGroup>
             {this.showAddress()}
           </ListGroup>
-          <h2>Add A ToDo</h2>
+          <h2>Add a new address about some one</h2>
           <Form className="text-left">
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Title</Form.Label>
-              <Form.Control type="text" placeholder="Enter Title" />
-              <Form.Label>Description</Form.Label>
-              <Form.Control as="textarea" rows="3" placeholder="Enter Description" />
+              <Form.Label>FirstName</Form.Label>
+              <Form.Control type="text" placeholder="Enter firstName" />
+              <Form.Label>LastName</Form.Label>
+              <Form.Control type="text" placeholder="Enter lastName" />
+              <Form.Label>Birthday</Form.Label>
+              <Form.Control type="text" placeholder="Enter Birthday" />
+              <Form.Label>Telephone</Form.Label>
+              <Form.Control type="text" placeholder="Enter Telephone" />
             </Form.Group>
+            <Button variant="primary" type="submit" onClick={this.addTodoHandler}>
+            Add Address
+            </Button>
           </Form>
           </Container>
       </div>
