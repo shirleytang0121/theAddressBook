@@ -48,6 +48,17 @@ class App extends Component {
         Telephone: "200-707-8670"
     }
     ]
+
+  }
+  addAddressHandler = (event) => {
+    event.preventDefault()
+    
+    let newAddress = {
+      FirstName:
+      LastName:
+      Birthday:
+      Telephone:
+    };
   }
 
   //show address
@@ -78,8 +89,8 @@ class App extends Component {
             {this.showAddress()}
           </ListGroup>
           <h2>Add a new address about some one</h2>
-          <Form className="text-left">
-            <Form.Group controlId="formBasicEmail">
+          <Form className="text-left" onClick={this.addAddressHandler}>
+            <Form.Group controlId="formAddress">
               <Form.Label>FirstName</Form.Label>
               <Form.Control type="text" placeholder="Enter firstName" />
               <Form.Label>LastName</Form.Label>
@@ -89,7 +100,7 @@ class App extends Component {
               <Form.Label>Telephone</Form.Label>
               <Form.Control type="text" placeholder="Enter Telephone" />
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={this.addTodoHandler}>
+            <Button variant="primary" type="submit" >
             Add Address
             </Button>
           </Form>
