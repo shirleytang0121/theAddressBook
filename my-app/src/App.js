@@ -3,12 +3,11 @@ import React, { Component } from 'react';
 import './App.css';
 
 import Container from 'react-bootstrap/Container';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Card from 'react-bootstrap/Card';
+
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
-
+import ShowAddress from './AddressBook/ShowAddress';
+import {generate} from 'randomstring';
 
 
 class App extends Component {
@@ -59,24 +58,7 @@ class App extends Component {
   }
 
 
-  showAddress = () => {
-    const address = [...this.state.address];
-    return address.map(
-      item => (
-        <ListGroup.Item key={item.Telephone}>
-        <Card className="bg-light border rounded">
-          <span className="text-right" onClick={this.closeAddress()}>{'\u274e'}</span>
-          <Card.Body className="text-left">
-            <p>FirstName:{item.FirstName}</p>
-            <p>LastName:{item.LastName}</p>
-            <p>Birthday:{item.Birthday}</p>
-            <p>Telephone:{item.Telephone}</p>
-          </Card.Body>
-        </Card>
-      </ListGroup.Item>
-      )
-    )
-  }
+  
   addAddressHandler = (event) => {
     event.preventDefault()
     
@@ -94,11 +76,11 @@ class App extends Component {
   }
 
    
-   closeAddress = (Telephone,e) =>{
+   closeAddressHandler = (Telephone,e) =>{
       let address=[...this.state.address];
-      let deleteIndex=1;
+      let deleteIndex=address.findIndex((item)=>item.Telephone===Telephone)
       address.splice(deleteIndex,1);
-      this.setState({"address":address})
+      this.setState({"address":address});
    }  
   
 
@@ -110,9 +92,9 @@ class App extends Component {
           <header className="App-header">
             <h1>Address Book</h1>
           </header> 
-          <ListGroup>
-             {this.showAddress()}
-          </ListGroup>
+         
+             <ShowAddress address={this.state.address } close={this.closeAddressHandler} />
+          
           <h2>Add a new address about some one</h2>
           <Form className="text-left" onSubmit={this.addAddressHandler}>
             <Form.Group controlId="formAddress">
