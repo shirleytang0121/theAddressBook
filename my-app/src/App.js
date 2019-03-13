@@ -53,7 +53,10 @@ class App extends Component {
     formFirstName:"",
     formLastName:"",
     formBirthday:"",
-    formTelephone:""
+    formTelephone:"",
+    formSearch:"",
+    ifFind:false,
+
 
   }
 
@@ -82,8 +85,19 @@ class App extends Component {
       address.splice(deleteIndex,1);
       this.setState({"address":address});
    }  
-  
 
+   hasAddressHandler=(event)=>{
+      event.preventDefault();
+      const address=[...this.state.address];
+      if(address.find((item)=>item.LastName===this.state.formSearch)){
+        this.setState({ifFind:true});
+               
+      }else{
+        this.setState({ifFind:false})
+       }
+   }
+  
+ 
   //render 
   render=()=> {
     return (
@@ -92,9 +106,19 @@ class App extends Component {
           <header className="App-header">
             <h1>Address Book</h1>
           </header> 
-         
-             <ShowAddress address={this.state.address } close={this.closeAddressHandler} />
-          
+              <Form className="text-left" onSubmit={this.hasAddressHandler.bind(this)}>
+              <Form.Label>search:</Form.Label>
+              <Form.Control type="text" placeholder="search by last name" 
+                value={this.state.formSearch}
+                onChange={(e)=>this.setState({formSearch:e.target.value})
+              }
+              />
+              <Button variant="primary" type="submit" >
+                   search
+               </Button>
+               
+              </Form>
+             <ShowAddress address={this.state.address} close={this.closeAddressHandler.bind(this)}/>
           <h2>Add a new address about some one</h2>
           <Form className="text-left" onSubmit={this.addAddressHandler}>
             <Form.Group controlId="formAddress">
