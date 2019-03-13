@@ -56,6 +56,7 @@ class App extends Component {
     formTelephone:"",
     formSearch:"",
     ifFind:false,
+    searchIndex:null
 
 
   }
@@ -91,9 +92,12 @@ class App extends Component {
       const address=[...this.state.address];
       if(address.find((item)=>item.LastName===this.state.formSearch)){
         this.setState({ifFind:true});
-               
+         let theIndex=address.findIndex((item)=>item.LastName===this.state.formSearch);
+         this.setState({searchIndex:theIndex})   
       }else{
         this.setState({ifFind:false})
+        this.setState({searchIndex:null})
+        alert("not found")
        }
    }
   
@@ -118,7 +122,11 @@ class App extends Component {
                </Button>
                
               </Form>
-             <ShowAddress address={this.state.address} close={this.closeAddressHandler.bind(this)}/>
+             <ShowAddress address={this.state.address} 
+             close={this.closeAddressHandler.bind(this)}
+             index={this.state.searchIndex}
+             ifFind={this.state.ifFind}
+             />
           <h2>Add a new address about some one</h2>
           <Form className="text-left" onSubmit={this.addAddressHandler}>
             <Form.Group controlId="formAddress">

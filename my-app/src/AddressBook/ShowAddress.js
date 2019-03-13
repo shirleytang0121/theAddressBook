@@ -5,7 +5,21 @@ import Card from 'react-bootstrap/Card';
 
 function ShowAddress (props)  {
     const address = [...props.address];
-    return address.map(
+    if(props.ifFind){
+        return (
+          <ListGroup.Item >
+        <Card className="bg-light border rounded">
+          <span className="text-right" onClick={props.close}>{'\u274e'}</span>
+          <Card.Body className="text-left">
+            <p>FirstName:{address[props.index].FirstName}</p>
+            <p>LastName:{address[props.index].LastName}</p>
+            <p>Birthday:{address[props.index].Birthday}</p>
+            <p>Telephone:{address[props.index].Telephone}</p>
+          </Card.Body>
+        </Card>
+      </ListGroup.Item> 
+        )
+    }else{return address.map(
       item => (
         <ListGroup.Item key={item.Telephone}>
         <Card className="bg-light border rounded">
@@ -20,5 +34,6 @@ function ShowAddress (props)  {
       </ListGroup.Item>
       )
     )
+  }
   }
   export default ShowAddress; 
